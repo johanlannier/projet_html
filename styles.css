@@ -21,6 +21,7 @@ td{
 	text-align : center;
 }
 
+
 html { 
 	height: 100%;
 	width: 100%;
@@ -57,3 +58,12 @@ html {
 		50%{background-position:100% 19%}
 		100%{background-position:0% 82%}
 	}
+
+footer{
+	text-align: center;
+}
+
+header{
+	text-align: center;
+}
+
