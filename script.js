@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	var html = "<table>";
+	var html = "<table class=plateau>";
 	for(var i=0; i<10; i++){
 		html += "<tr>";
 		for(var j=0; j<10; j++){
@@ -14,7 +14,7 @@ $(document).ready(function(){
 	}
 	html += "</table>";
 
-	$("#plateau").
+	$("#plateau").append(html);
 
 
 
