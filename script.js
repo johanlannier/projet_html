@@ -8,13 +8,21 @@ $(document).ready(function(){
 				html += "<td class=blanche>";
 			}else{
 				html += "<td class=noire>";
+				if(i<4){
+					html += "<img src=images/pion_blanc.png></td>";
+				}else if(i>5){
+					html += "<img src=images/pion_noir.jpg></td>";
+				}
+				
 			}
 		}
-		html += "</tr>";
-	}
-	html += "</table>";
 
-	$("#plateau").append(html);
+	}
+	html += "</tr>";
+}
+html += "</table>";
+
+$("#plateau").append(html);
 
 
 
