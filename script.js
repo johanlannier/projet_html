@@ -16,8 +16,6 @@ $(document).ready(function(){
 				
 			}
 		}
-
-	}
 	html += "</tr>";
 }
 html += "</table>";
