@@ -23,11 +23,19 @@ html += "</table>";
 $("#plateau").append(html);
 
 $("img").draggable({
-	revert: "invalid"
+	revert: "invalid",
+	addClass: "drag"
 });
 
-$("img").droppable({
-	accept : "td"
-})
+$("td").droppable({
+	accept: "img",
+	drop: function(event, ui){
+		var tmp = parseInt($(this).attr("id"))-9;
+		if(ui.draggable.is("#"+tmp)){
+			return true;
+		}
+	}
+
+});
 
 });
