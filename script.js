@@ -22,7 +22,7 @@ html += "</table>";
 
 $("#plateau").append(html);
 
-$("table").draggable();
+$("img").draggable();
 
 
 });
