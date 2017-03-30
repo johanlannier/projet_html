@@ -11,7 +11,7 @@ $(document).ready(function(){
 				if(i<4){
 					html += "<img src=images/pion_blanc.png></td>";
 				}else if(i>5){
-					html += "<img src=images/pion_noir.jpg></td>";
+					html += "<img src=images/pion_noir.png></td>";
 				}
 				
 			}
