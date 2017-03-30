@@ -5,9 +5,9 @@ $(document).ready(function(){
 		html += "<tr>";
 		for(var j=0; j<10; j++){
 			if((i+j)%2 == 0){
-				html += "<td class=blanche>";
+				html += "<td class=blanche id="+(i+j)+">";
 			}else{
-				html += "<td class=noire>";
+				html += "<td class=noire id="+(i+j)+">";
 				if(i<4){
 					html += "<img src=images/pion_blanc.png></td>";
 				}else if(i>5){
@@ -22,7 +22,12 @@ html += "</table>";
 
 $("#plateau").append(html);
 
-$("img").draggable();
+$("img").draggable({
+	revert: "invalid"
+});
 
+$("img").droppable({
+	accept : "td"
+})
 
 });
