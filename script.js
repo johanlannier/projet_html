@@ -4,6 +4,7 @@ $(document).ready(function(){
 
 	CreationPlateau();
 	Jouer();
+	afficheTour();
 
 	$("td").droppable({
 		grid: [60, 60],
@@ -16,6 +17,9 @@ $(document).ready(function(){
 		}
 
 	});
+
+
+	
 
 });
 
@@ -53,6 +57,7 @@ function Jouer(){
 				if(ui.position.left !== ui.originalPosition.left && ui.position.top !== ui.originalPosition.top) {
 					$(".gangnam").draggable('destroy');
 					tour = "J2";
+					afficheTour();
 					Jouer();
 				}
 			}
@@ -66,10 +71,20 @@ function Jouer(){
 				if(ui.position.left !== ui.originalPosition.left && ui.position.top !== ui.originalPosition.top) {
 					$(".barbie").draggable('destroy');
 					tour = "J1";
+					afficheTour();
 					Jouer();
 				}
 			}
 		});
 
 	}
+}
+
+function afficheTour(){
+	if(tour=="J1"){
+		var html="C'est à Gangnam de jouer!";
+	}else{
+		var html="C'est à Barbie de jouer!";
+	}
+	$("#tour").html(html);
 }
