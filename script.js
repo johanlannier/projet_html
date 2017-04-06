@@ -3,13 +3,13 @@ $(document).ready(function(){
 	CreationPlateau();
 
 	$("img").draggable({
-		grid: [52, 56.5],
+		grid: [62, 62],
 		revert: "invalid",
 		addClass: "drag"
 	});
 
 	$("td").droppable({
-		grid: [52, 56.5],
+		grid: [60, 60],
 		accept: "img",
 		drop: function(event, ui){
 			var tmp = parseInt($(this).attr("id"))-9;
