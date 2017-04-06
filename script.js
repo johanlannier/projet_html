@@ -1,5 +1,28 @@
 $(document).ready(function(){
 
+	CreationPlateau();
+
+	$("img").draggable({
+		grid: [52, 56.5],
+		revert: "invalid",
+		addClass: "drag"
+	});
+
+	$("td").droppable({
+		grid: [52, 56.5],
+		accept: "img",
+		drop: function(event, ui){
+			var tmp = parseInt($(this).attr("id"))-9;
+			if(ui.draggable.is("#"+tmp)){
+				return true;
+			}
+		}
+
+	});
+
+});
+
+function CreationPlateau(){
 	var html = "<table class=plateau>";
 	for(var i=0; i<10; i++){
 		html += "<tr>";
@@ -16,26 +39,9 @@ $(document).ready(function(){
 				
 			}
 		}
-	html += "</tr>";
-}
-html += "</table>";
-
-$("#plateau").append(html);
-
-$("img").draggable({
-	revert: "invalid",
-	addClass: "drag"
-});
-
-$("td").droppable({
-	accept: "img",
-	drop: function(event, ui){
-		var tmp = parseInt($(this).attr("id"))-9;
-		if(ui.draggable.is("#"+tmp)){
-			return true;
-		}
+		html += "</tr>";
 	}
+	html += "</table>";
 
-});
-
-});
+	$("#plateau").append(html);
+}
