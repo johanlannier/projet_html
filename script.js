@@ -5,9 +5,17 @@ $(document).ready(function(){
 	CreationPlateau();
 	Jouer();
 	afficheTour();
-
 	
+	$("td").droppable({
+		accept: function($pion){
+			console.log(parseInt($pion.parent().attr("id"))+" this : "+parseInt($(this).attr("id")));
+			return true;
+		},
+		drop: function(event, ui){
+			return true;
+		}
 
+	});
 
 	
 
@@ -43,7 +51,7 @@ function ModifierTour(){
 		afficheTour();
 		Jouer();
 	}else{
-		tour = "J2";
+		tour = "J1";
 		afficheTour();
 		Jouer();
 	}
@@ -63,15 +71,7 @@ function Jouer(){
 			}
 		});
 
-		$("td").droppable({
-			accept: function($pion){
-				console.log(parseInt($pion.parent().attr("id"))+" this : "+parseInt($(this).attr("id")));
-			},
-			drop: function(event, ui){
-				return true;
-			}
-
-		});
+		
 	}else{
 		$(".barbie").draggable({
 			grid: [62, 62],
