@@ -7,9 +7,9 @@ $(document).ready(function(){
 	afficheTour();
 	
 	$("td").droppable({
-		accept: function($pion){
-			console.log(parseInt($pion.parent().attr("id"))+" this : "+parseInt($(this).attr("id")));
-			return true;
+		accept: function(event, ui, $pion){
+			var tmp = parseInt($pion.attr("id"));
+			return false;
 		},
 		drop: function(event, ui){
 			return true;
