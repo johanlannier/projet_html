@@ -1,12 +1,9 @@
+var tour = "J1";
+
 $(document).ready(function(){
 
 	CreationPlateau();
-
-	$("img").draggable({
-		grid: [62, 62],
-		revert: "invalid",
-		addClass: "drag"
-	});
+	Jouer();
 
 	$("td").droppable({
 		grid: [60, 60],
@@ -32,9 +29,9 @@ function CreationPlateau(){
 			}else{
 				html += "<td class=noire id="+(i+j)+">";
 				if(i<4){
-					html += "<img src=images/pion_blanc.png></td>";
+					html += "<img src=images/pion_blanc.png class=gangnam></td>";
 				}else if(i>5){
-					html += "<img src=images/pion_noir.png></td>";
+					html += "<img src=images/pion_noir.png class=barbie></td>";
 				}
 				
 			}
@@ -44,4 +41,35 @@ function CreationPlateau(){
 	html += "</table>";
 
 	$("#plateau").append(html);
+}
+
+function Jouer(){
+	if(tour == "J1"){
+		$(".gangnam").draggable({
+			grid: [62, 62],
+			revert: "invalid",
+			addClass: "drag",
+			stop: function (e, ui) {
+				if(ui.position.left !== ui.originalPosition.left && ui.position.top !== ui.originalPosition.top) {
+					$(".gangnam").draggable('destroy');
+					tour = "J2";
+					Jouer();
+				}
+			}
+		});
+	}else{
+		$(".barbie").draggable({
+			grid: [62, 62],
+			revert: "invalid",
+			addClass: "drag",
+			stop: function (e, ui) {
+				if(ui.position.left !== ui.originalPosition.left && ui.position.top !== ui.originalPosition.top) {
+					$(".barbie").draggable('destroy');
+					tour = "J1";
+					Jouer();
+				}
+			}
+		});
+
+	}
 }
