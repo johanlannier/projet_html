@@ -3,6 +3,7 @@ var tour = "J1";
 $(document).ready(function(){
 
 	CreationPlateau();
+	Prevision();
 	Jouer();
 	afficheTour();
 	
@@ -94,4 +95,49 @@ function afficheTour(){
 		var html="C'est à Barbie de jouer!";
 	}
 	$("#tour").html(html);
+}
+
+
+function Prevision(){
+	$(".barbie").mouseover(function(){
+		var id = $(this).parent().attr("id");
+		if((id-1)%10 != 0){
+			$("#"+(parseInt(id)-11)).css("background","red");
+		}
+		if(id%10 != 0){
+			$("#"+(parseInt(id)-9)).css("background","red");
+		}
+	});
+
+	$(".barbie").mouseout(function(){
+		var id = $(this).parent().attr("id");
+		if((id-1)%10 != 0){
+			$("#"+(parseInt(id)-11)).css("background","black");
+		}
+		if(id%10 != 0){
+			$("#"+(parseInt(id)-9)).css("background","black");
+		}
+	});
+
+
+
+	$(".gangnam").mouseover(function(){
+		var id = $(this).parent().attr("id");
+		if(id%10 != 0){
+			$("#"+(parseInt(id)+11)).css("background","red");
+		}
+		if((id+1)%11 != 0){
+			$("#"+(parseInt(id)+9)).css("background","red");
+		}
+	});
+
+	$(".gangnam").mouseout(function(){
+		var id = $(this).parent().attr("id");
+		if(id%10 != 0){
+			$("#"+(parseInt(id)+11)).css("background","black");
+		}
+		if((id+1)%11 != 0){
+			$("#"+(parseInt(id)+9)).css("background","black");
+		}
+	});
 }
