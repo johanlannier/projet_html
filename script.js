@@ -8,12 +8,26 @@ $(document).ready(function(){
 	afficheTour();
 	
 	$("td").droppable({
-		accept: function(event, ui, $pion){
-			var tmp = parseInt($pion.attr("id"));
-			return false;
+		accept: function(){
+			return true;
 		},
 		drop: function(event, ui){
-			return true;
+			var tmp = $(this).html();
+			if(((parseInt(ui.draggable.parent().attr("id")) == parseInt($(this).attr("id")) -9) || (parseInt(ui.draggable.parent().attr("id")) == parseInt($(this).attr("id")) -11) || (parseInt(ui.draggable.parent().attr("id")) == parseInt($(this).attr("id")) +9) || (parseInt(ui.draggable.parent().attr("id")) == parseInt($(this).attr("id")) +11)) && (tmp == "")){
+				$(this).html(ui.draggable);
+				if(ui.draggable.hasClass("gangnam")){
+					$(".gangnam").draggable('destroy');
+				}else{
+					$(".barbie").draggable('destroy');
+				}
+				ui.draggable.css("left", "");
+				ui.draggable.css("top", "");
+				$(".noire").css("background", "black");
+				ModifierTour();
+				return true;
+			}else{
+				return false;
+			}
 		}
 
 	});
@@ -36,7 +50,6 @@ function CreationPlateau(){
 				}else if(i>5){
 					html += "<img src=images/pion_noir.png class=barbie></td>";
 				}
-				
 			}
 		}
 		html += "</tr>";
@@ -63,26 +76,14 @@ function Jouer(){
 	if(tour == "J1"){
 		$(".gangnam").draggable({
 			grid: [62, 62],
-			revert: "invalid",
-			stop: function (e, ui) {
-				if(ui.position.left !== ui.originalPosition.left && ui.position.top !== ui.originalPosition.top) {
-					$(".gangnam").draggable('destroy');
-					ModifierTour();
-				}
-			}
+			revert: "valid"
 		});
 
 		
 	}else{
 		$(".barbie").draggable({
 			grid: [62, 62],
-			revert: "invalid",
-			stop: function (e, ui) {
-				if(ui.position.left !== ui.originalPosition.left && ui.position.top !== ui.originalPosition.top) {
-					$(".barbie").draggable('destroy');
-					ModifierTour();
-				}
-			}
+			revert: "valid"
 		});
 
 	}
@@ -100,7 +101,7 @@ function afficheTour(){
 
 function Prevision(){
 	$(".barbie").mouseover(function(){
-		var id = $(this).parent().attr("id");
+		var id = parseInt($(this).parent().attr("id"));
 		if((id-1)%10 != 0){
 			$("#"+(parseInt(id)-11)).css("background","red");
 		}
@@ -110,7 +111,7 @@ function Prevision(){
 	});
 
 	$(".barbie").mouseout(function(){
-		var id = $(this).parent().attr("id");
+		var id = parseInt($(this).parent().attr("id"));
 		if((id-1)%10 != 0){
 			$("#"+(parseInt(id)-11)).css("background","black");
 		}
@@ -122,22 +123,22 @@ function Prevision(){
 
 
 	$(".gangnam").mouseover(function(){
-		var id = $(this).parent().attr("id");
+		var id = parseInt($(this).parent().attr("id"));
+		if((id-1)%10 != 0){
+			$("#"+(parseInt(id)+9)).css("background","red");
+		}
 		if(id%10 != 0){
 			$("#"+(parseInt(id)+11)).css("background","red");
-		}
-		if((id+1)%11 != 0){
-			$("#"+(parseInt(id)+9)).css("background","red");
 		}
 	});
 
 	$(".gangnam").mouseout(function(){
-		var id = $(this).parent().attr("id");
+		var id = parseInt($(this).parent().attr("id"));
+		if((id-1)%10 != 0){
+			$("#"+(parseInt(id)+9)).css("background","black");
+		}
 		if(id%10 != 0){
 			$("#"+(parseInt(id)+11)).css("background","black");
-		}
-		if((id+1)%11 != 0){
-			$("#"+(parseInt(id)+9)).css("background","black");
 		}
 	});
 }
